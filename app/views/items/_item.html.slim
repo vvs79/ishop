@@ -1,0 +1,26 @@
+- @items.each_with_index do |item, index|
+  tr.info
+    td.center
+      = link_to item_path(item), rel: 'tooltip', title: 'Show item'
+        = set_id(index)
+    td.center.w_55px
+      = link_to item_path(item), rel: 'tooltip', title: 'Show item'
+        = image_tag "foto_#{item.id}1.jpg", height: '25px', width: '50px', alt: "no foto"
+    td
+      = link_to item_path(item), rel: 'tooltip', title: 'Show item'
+        = item.name
+    td.center
+      = link_to item_path(item), rel: 'tooltip', title: 'Show item'
+        = item.price
+    - if user_signed_in?
+      - if current_user.admin?
+        td.center
+          = link_to item_path(item), method: :delete, data: { confirm: 'Are you sure?' }, rel: 'tooltip', title: 'Delete item', class: "btn btn-sm btn-danger" do
+            item.glyphicon.glyphicon-remove
+        td.center
+          = link_to edit_item_path(item), rel: 'tooltip', title: 'Edit item', class: "btn btn-sm btn-warning" do
+            item.glyphicon.glyphicon-edit
+    else
+      td.center
+        = link_to item_path(item), rel: 'tooltip', title: 'Придбати', class: "btn btn-sm btn-info" do
+          item.glyphicon.glyphicon-shopping-cart

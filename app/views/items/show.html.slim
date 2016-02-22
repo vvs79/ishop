@@ -1,0 +1,16 @@
+- provide(:title, @item.name)
+.container.content-area
+  h1.center
+    = @item.name
+  //= render 'layouts/messages'
+  .big_foto
+    = image_tag "foto_#{@item.id}1.jpg", height: '250px', width: '500px', alt: "no foto"
+  br
+  .w_55px.small_foto
+    = image_tag "foto_#{@item.id}1.jpg", height: '25px', width: '50px', alt: "no foto"
+  br
+  .w_55px.small_foto
+    = image_tag "foto_#{@item.id}2.jpg", height: '25px', width: '50px', alt: "no foto"
+  p.center
+    = link_to edit_item_path(@item), rel: 'tooltip', title: 'Придбати', class: "btn btn-sm btn-info" do
+      i.glyphicon.glyphicon-shopping-cart

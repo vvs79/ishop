@@ -3,9 +3,10 @@
     td.center
       = link_to item_path(item), rel: 'tooltip', title: 'Show item'
         = set_id(index)
-    td.center.w_55px
+    td.w_55px
       = link_to item_path(item), rel: 'tooltip', title: 'Show item'
-        = image_tag "foto_#{item.id}1.jpg", height: '25px', width: '50px', alt: "no foto"
+        = image_tag item.avatars[item.avatars.count-1].url, height: '30px' if item.avatars?
+        //= image_tag "foto_#{item.id}1.jpg", height: '25px', width: '50px', alt: "no foto"
     td
       = link_to item_path(item), rel: 'tooltip', title: 'Show item'
         = item.name

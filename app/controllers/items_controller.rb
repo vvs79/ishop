@@ -11,6 +11,7 @@ class ItemsController < ApplicationController
 	end
 
 	def show
+    # raise "exception test!"
 		@item = Item.find(params[:id])
 	rescue ActiveRecord::RecordNotFound
     flash[:danger] = 'Item does not exist!'
@@ -35,12 +36,17 @@ class ItemsController < ApplicationController
   end
 
 	def new
-    @items = current_user.items.new
+    @item = current_user.items.new
+    # @item.avatar = params[:file]
   end
 
   def create
     @item = current_user.items.new(item_params)
+    # @item.avatars = params[:item]
     if @item.save
+      # @item.avatars[0].url
+      # @item.avatars[0].current_path
+      # @item.avatars[0].identifier
       redirect_to item_path(@item)
     else
       render 'new'
@@ -67,7 +73,7 @@ class ItemsController < ApplicationController
 	private
 
 	def item_params
-		params.require(:item).permit(:name, :price, :description)
+		params.require(:item).permit(:name, :price, :description, {avatars: []})
 	end
 
 end

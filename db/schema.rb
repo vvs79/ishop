@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219200333) do
+ActiveRecord::Schema.define(version: 20160226154428) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160219200333) do
     t.integer  "votes_count", default: 0
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.text     "avatars"
   end
 
   add_index "items", ["name"], name: "index_items_on_name"

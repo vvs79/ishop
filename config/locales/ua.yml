@@ -1,0 +1,11 @@
+ua:
+  item:
+    description: 'Опис: '
+  activerecord:
+    models:
+      item: 'Товар '
+    attributes:
+      item:
+        price: 'Ціна '
+        name: 'Назва '
+        description: 'Опис '

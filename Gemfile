@@ -25,7 +25,6 @@ gem 'ransack', '1.7.0'
 gem 'responders'
 gem 'sprockets', '2.12.3'
 
-gem 'sqlite3'
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form'
 gem 'exception_notification'
 

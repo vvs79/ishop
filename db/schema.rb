@@ -14,39 +14,39 @@
 ActiveRecord::Schema.define(version: 20160226154428) do
 
   create_table "items", force: :cascade do |t|
-    t.string   "name"
-    t.float    "price"
-    t.string   "description"
-    t.integer  "user_id"
-    t.integer  "votes_count", default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.text     "avatars"
+    t.string   "name",        limit: 255
+    t.float    "price",       limit: 24
+    t.string   "description", limit: 255
+    t.integer  "user_id",     limit: 4
+    t.integer  "votes_count", limit: 4,     default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.text     "avatars",     limit: 65535
   end
 
-  add_index "items", ["name"], name: "index_items_on_name"
-  add_index "items", ["price"], name: "index_items_on_price"
+  add_index "items", ["name"], name: "index_items_on_name", using: :btree
+  add_index "items", ["price"], name: "index_items_on_price", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "login"
+    t.string   "login",                  limit: 255
     t.boolean  "admin"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-	before_filter :authenticate_user!, only: [:create, :new]
+	before_filter :authenticate_user!, only: [:create, :new, :show]
 	before_filter :check_if_admin, only: [:edit, :update, :destroy]
 
   # respond_to :json, :html

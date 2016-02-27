@@ -25,5 +25,12 @@ module Ishop
     config.active_record.raise_in_transactional_callbacks = true
 
     config.assets.initialize_on_precompile = false
+
+    config.generators do |g|
+      g.template_engine :slim
+      g.test_framework :rspec, fixtures: true, views: false
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
+
   end
 end

@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :login, presence: true, length: { maximum: 50 }
 
   has_many :items
-  has_one :cart
+  has_one  :cart
   has_many :orders
   has_many :comments
   

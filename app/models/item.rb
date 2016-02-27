@@ -5,9 +5,10 @@ class Item < ActiveRecord::Base
   validates :price, numericality: { greater_than: 0, allow_nil: true}
   
   belongs_to :user
-  has_many :carts, through: :positions
-  has_many :positions
-  has_many :comments, as: :commantable
+  has_many   :carts, through: :positions
+  has_many   :positions
+  has_many   :comments, as: :commantable
+  has_and_belongs_to_many :orders
   
   mount_uploaders :avatars, AvatarUploader
   serialize :avatars, Array

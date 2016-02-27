@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226154428) do
+ActiveRecord::Schema.define(version: 20160227080407) do
+
+  create_table "blog_posts", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.text     "body",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "body",             limit: 65535
+    t.integer  "user_id",          limit: 4
+    t.integer  "commantable_id",   limit: 4
+    t.integer  "commantable_type", limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
 
   create_table "items", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -26,6 +48,20 @@ ActiveRecord::Schema.define(version: 20160226154428) do
 
   add_index "items", ["name"], name: "index_items_on_name", using: :btree
   add_index "items", ["price"], name: "index_items_on_price", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.integer  "cart_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.integer  "quantity",   limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "login",                  limit: 255

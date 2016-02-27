@@ -4,7 +4,7 @@
     = @item.name
   //= render 'layouts/messages'
   .center.big_foto
-    = image_tag @item.avatars[@item.avatars.count-1].url, width: '700px' if @item.avatars?
+    = image_tag @item.avatars[@item.avatars.count-1].url, width: '70%' if @item.avatars?
   br
   p
     - image_number = 0

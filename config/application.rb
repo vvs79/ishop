@@ -22,6 +22,8 @@ module Ishop
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
 
+    config.action_mailer.delivery_method = :sendmail
+
     config.active_record.raise_in_transactional_callbacks = true
 
     config.assets.initialize_on_precompile = false

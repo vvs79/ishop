@@ -16,7 +16,7 @@
     - if user_signed_in?
       - if current_user.admin?
         td.center
-          = link_to interview_path(interview), method: :delete, data: { confirm: 'Are you sure?' }, rel: 'tooltip', title: 'Delete item', class: "deleteAction btn btn-sm btn-danger" do
+          = link_to item_path(item), method: :delete, data: { confirm: 'Are you sure?' }, rel: 'tooltip', title: 'Delete item', class: "deleteAction btn btn-sm btn-danger" do
             item.glyphicon.glyphicon-remove
         td.center
           = link_to edit_item_path(item), rel: 'tooltip', title: 'Edit item', class: "btn btn-sm btn-warning" do

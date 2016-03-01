@@ -56,7 +56,7 @@ class ItemsController < ApplicationController
   def destroy
     # respond_with Item.destroy params[:id]
     @item = Item.find(params[:id])
-    @item.destroy
+    Item.find(params[:id]).destroy
     render json: { success: true }
     # ItemsMailer.item_destroyed(@item).deliver
     # flash[:success] = 'Item deleted'

@@ -1,5 +1,5 @@
 - @items.each_with_index do |item, index|
-  tr.info
+  tr.info data-item_id="#{item.id}"
     td.center
       = link_to item_path(item), rel: 'tooltip', title: 'Show item'
         = set_id(index)
@@ -16,7 +16,7 @@
     - if user_signed_in?
       - if current_user.admin?
         td.center
-          = link_to item_path(item), method: :delete, data: { confirm: 'Are you sure?' }, rel: 'tooltip', title: 'Delete item', class: "btn btn-sm btn-danger" do
+          = link_to '#', rel: 'tooltip', title: 'Delete item', class: "deleteAction btn btn-sm btn-danger" do
             item.glyphicon.glyphicon-remove
         td.center
           = link_to edit_item_path(item), rel: 'tooltip', title: 'Edit item', class: "btn btn-sm btn-warning" do

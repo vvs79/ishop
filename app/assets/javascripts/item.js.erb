@@ -4,21 +4,23 @@ $(function(){
     $('.big_foto img').attr('src',$(this).attr('src'));
   });
 
-  $('.deleteAction').click(function() {
-    var current_item_tr = $(this).parents('tr')[0];
-    if (confirm('Are you sure?')) { 
-      $.ajax({
-        url: '/items/' + $(current_item_tr).attr('data-item_id'),
-        type: 'POST',
-        data: { _method: 'DELETE' },
-        success: function(result) {
-          $(current_item_tr).fadeOut(200);
-          console.log(result);
-        }
-      });
-     };
-    console.log('foto YES');
-  });
+  // $('.deleteAction').click(function() {
+  //   var current_item_tr = $(this).parents('tr')[0];
+  //   if (confirm('Are you sure?')) { 
+  //     $.ajax({
+  //       url: '/items/' + $(current_item_tr).attr('data-item_id'),
+  //       type: 'POST',
+  //       data: { _method: 'DELETE' },
+  //       success: function(result) {
+  //         $(current_item_tr).fadeOut(200);
+  //         console.log(result);
+  //       }
+  //     });
+  //    };
+  //   console.log('foto YES');
+  // });
+
+
 
 
   // var tab, num_i = 1, totalsize=0;

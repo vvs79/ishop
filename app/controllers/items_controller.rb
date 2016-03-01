@@ -57,10 +57,10 @@ class ItemsController < ApplicationController
     # respond_with Item.destroy params[:id]
     @item = Item.find(params[:id])
     Item.find(params[:id]).destroy
-    render json: { success: true }
-    # ItemsMailer.item_destroyed(@item).deliver
+    # render json: { success: true }
+    ItemsMailer.item_destroyed(@item).deliver
     # flash[:success] = 'Item deleted'
-    # redirect_to items_path
+    redirect_to items_path
   end
 
 	def upvote

@@ -1,32 +1,65 @@
 - provide(:title, 'All items')
-.container.content-area
+.container.content-area ng-app="Item"
   h1.center
     | All items
-  br
-  .row  
-    //= render 'layouts/messages'
-  .row.center
-    = render 'search_form_for'
-  br
-  - if user_signed_in?
-    - if current_user.admin?
-      .row
-        .col-sm-3  
-          = link_to 'Create item', new_item_path, class: 'btn btn-md btn-success'
-  br
-  .center
-    .table-responsive#items-table
-      table.table.table-bordered.table-hover
-        tr.active
-          th.width_5
-            h4 Id
-          th.width_65 colspan="2"
-            h4 Item
-          th.width_15
-            h4 Price
-          th.width_15 colspan="3"
-            h4 Action
-        = render 'item'
+  .center ng-controller="ItemCtrl"
+    .row  
+      //= render 'layouts/messages'
+    br
+    - if user_signed_in?
+      - if current_user.admin?
+        .row
+          .col-sm-3  
+            = link_to 'Create item', new_item_path, class: 'btn btn-md btn-success'
+    br
+    .center
+      .col-md-2
+        input ng-model="query" placeholder="Search"
+        | Sort by : 
+        select ng-model="orderProp"
+          option value="name"
+            | Item name
+          option value="price"
+            | Item price
+          option value="updated_at"
+            | Date
+      .table-responsive#items-table
+        table.table.table-bordered.table-hover
+          tr.active
+            th.width_5
+              h4 Id
+            th.width_65 colspan="2"
+              h4 Item
+            th.width_15
+              h4 Price
+            th.width_15 colspan="3"
+              h4 Action
+          tr.info ng-repeat="item in items | filter:query | orderBy:orderProp"
+            td.center
+              a ng-href="/items/{{item.id}}" rel='tooltip' title='Show item'
+                | {{item.id}}
+            td.center
+              a ng-href="/items/{{item.id}}" rel='tooltip' title='Show item'
+                img src="{{item.avatars[item.avatars.length-1].url}}" alt="no photo" height='30px'
+            td.center
+              a ng-href="/items/{{item.id}}" rel='tooltip' title='Show item'
+                | {{item.name}}
+            td
+              a ng-href="/items/{{item.id}}" rel='tooltip' title='Show item'
+                | {{item.price}}
+            - if user_signed_in?
+              - if current_user.admin?
+                td.center
+                  a ng-click="removeItem(item)"
+                    button class="btn btn-sm btn-danger glyphicon glyphicon-remove" rel='tooltip' title='Delete item'
+                td.center
+                  a ng-href="/items/{{item.id}}/edit"
+                    button class="btn btn-sm btn-warning glyphicon glyphicon-edit" rel='tooltip' title='Edit item'
+            else
+              td.center
+                a ng-href="/items/{{item.id}}"
+                  button class="btn btn-sm btn-info glyphicon glyphicon-shopping-cart" rel='tooltip' title='Придбати'
+          //= render 'item'
   - if @items.count > 10
     br
     .col-sm-12

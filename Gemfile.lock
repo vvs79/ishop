@@ -54,6 +54,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    angularjs-rails (1.4.8)
     ansi (1.5.0)
     arel (6.0.3)
     ast (2.2.0)
@@ -425,6 +426,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-rails
   aws-sdk (= 1.6.0)
   bcrypt (= 3.1.7)
   bootstrap-sass (= 3.2.0.0)

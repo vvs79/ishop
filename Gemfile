@@ -27,6 +27,7 @@ gem 'sprockets', '2.12.3'
 
 gem 'simple_form', git: 'git://github.com/plataformatec/simple_form'
 gem 'exception_notification'
+gem 'angularjs-rails'
 
 group :development, :test do
   gem 'mysql2'

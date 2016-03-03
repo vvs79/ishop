@@ -1,13 +1,13 @@
 class ItemsController < ApplicationController
 	before_filter :authenticate_user!, only: [:create, :new, :show]
 	before_filter :check_if_admin, only: [:edit, :update, :destroy]
-
-  # respond_to :json, :html
+  respond_to :json, :html
 
 	def index
 		@items = Item.all
-		@search = @items.search(params[:q] || {})
-    @items = @search.result.paginate(page: params[:page] || 1, per_page: 10).order(id: :desc)
+		# @search = @items.search(params[:q] || {})
+    # @items = @search.result.paginate(page: params[:page] || 1, per_page: 10).order(id: :desc)
+    respond_with Item.order(created_at: :desc)
 	end
 
 	def show
@@ -56,8 +56,9 @@ class ItemsController < ApplicationController
   def destroy
     # respond_with Item.destroy params[:id]
     # @item = Item.find(params[:id])
-    Item.find(params[:id]).destroy
-    render json: { success: true }
+    # Item.find(params[:id]).destroy
+    # render json: { success: true }
+    respond_with Item.destroy params[:id]
     # ItemsMailer.item_destroyed(@item).deliver
     # flash[:success] = 'Item deleted'
     # redirect_to items_path

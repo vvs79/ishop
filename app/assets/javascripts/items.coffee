@@ -1,3 +1,18 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+app = angular.module("Item", ["ngResource"])
+
+app.factory "Item", ["$resource", ($resource) ->
+  $resource("/items/:id.json", {id: "@id"})
+]
+
+app.controller 'ItemCtrl', ['$scope', 'Item', ($scope, Item) ->
+  $scope.items = Item.query()
+
+  $scope.addInterview = ->
+    interview = Interview.save($scope.newInterview)
+    $scope.interviews.push(interview)
+    $scope.newInterview = {}
+
+  $scope.removeItem = (int) ->
+    int.$remove()
+    $scope.items.splice($scope.items.indexOf(int), 1)
+]

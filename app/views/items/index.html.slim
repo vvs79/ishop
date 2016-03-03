@@ -14,15 +14,16 @@
     br
     .center
       .col-md-2
-        input ng-model="query" placeholder="Search"
-        | Sort by : 
-        select ng-model="orderProp"
-          option value="name"
-            | Item name
-          option value="price"
-            | Item price
-          option value="updated_at"
-            | Date
+        p
+          input ng-model="query" placeholder="Search"
+          | Sort by : 
+          select ng-model="orderProp"
+            option value="name"
+              | Item name
+            option value="price"
+              | Item price
+            option value="updated_at"
+              | Date
       .table-responsive#items-table
         table.table.table-bordered.table-hover
           tr.active

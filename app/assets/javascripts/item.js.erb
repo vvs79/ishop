@@ -9,7 +9,7 @@ $(function(){
     if (confirm('Are you sure?')) { 
       $.ajax({
         url: '/items/' + $(current_item_tr).attr('data-item_id'),
-        type: 'POST',
+        type: 'DELETE',
         data: { _method: 'DELETE' },
         success: function(result) {
           $(current_item_tr).fadeOut(200);
